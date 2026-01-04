@@ -1,6 +1,3 @@
 flet
-yfinance
-pandas
-feedparser
-google-genai
+supabase
 python-dotenv
