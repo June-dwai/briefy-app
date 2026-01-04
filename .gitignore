@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Flet / Flutter build
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# OS
+.DS_Store
