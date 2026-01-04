@@ -1,59 +1,56 @@
 name: Build Android APK
 on:
-  workflow_dispatch: # 버튼 누르면 실행
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. 내 코드 가져오기
       - uses: actions/checkout@v4
 
-      # 2. 리눅스 환경 설정 (Flet 빌드 도구 실행에 필수)
       - name: Install Linux dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev clang cmake ninja-build pkg-config mesa-utils libgl1-mesa-dev
-      # 3. 자바(Java) 설치
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # 4. 파이썬 설치
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 5. 플러터(Flutter) 설치
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
-      # 6. 안드로이드 라이선스 동의 (빌드 멈춤 방지)
       - name: Accept Android Licenses
         run: |
           yes | flutter doctor --android-licenses
-      # 7. 라이브러리 설치 (충돌 방지를 위해 requirements.txt로 한 번에 설치)
+
       - name: Install Dependencies
+        working-directory: app
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      # 8. 앱 빌드
+
       - name: Build APK
+        working-directory: app
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           flet build apk --verbose
-      # 9. 완성된 파일 업로드
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: stock-app-release
-          # Flet 빌드 로그에서 명시한 최종 결과물 폴더입니다.
-          path: build/apk/*.apk
-          # 파일이 없을 경우 빌드를 실패로 처리하여 즉시 확인 가능하게 합니다.
+          name: briefy-apk
+          path: app/build/apk/*.apk
           if-no-files-found: error
-          compression-level: 6
           overwrite: true
