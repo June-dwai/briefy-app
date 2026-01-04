@@ -8,8 +8,11 @@ load_dotenv()
 # -------------------------
 # Supabase (앱은 "읽기만" 하므로 anon key만 사용)
 # -------------------------
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+SUPABASE_URL = "https://rrqkqpgilkjziivjuuzb.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycWtxcGdpbGtqemlpdmp1dXpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1NDkwMTMsImV4cCI6MjA4MzEyNTAxM30.B6b1M22aKO3xRrJ2T0FC6-GGJKpCNdVXTLY8iCVLwzE"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycWtxcGdpbGtqemlpdmp1dXpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1NDkwMTMsImV4cCI6MjA4MzEyNTAxM30.B6b1M22aKO3xRrJ2T0FC6-GGJKpCNdVXTLY8iCVLwzE"
 
 if not SUPABASE_URL or not SUPABASE_ANON_KEY:
     raise RuntimeError("SUPABASE_URL / SUPABASE_ANON_KEY 환경변수가 필요합니다. (.env 확인)")
