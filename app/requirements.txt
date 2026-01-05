@@ -1,3 +1,2 @@
 flet
 supabase
-python-dotenv
