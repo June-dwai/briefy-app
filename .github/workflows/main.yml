@@ -41,9 +41,6 @@ jobs:
 
       - name: Build APK
         working-directory: app
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           flet build apk --verbose
 
