@@ -1,0 +1,4 @@
+# Briefy 앱 설정 파일
+android:
+  include_deeplink: true
+  deeplink_scheme: briefy
