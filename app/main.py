@@ -1,9 +1,9 @@
 import os
 import flet as ft
 from supabase import create_client, Client
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 # -------------------------
 # Supabase (앱은 "읽기만" 하므로 anon key만 사용)
@@ -272,4 +272,8 @@ def main(page: ft.Page):
 
 
 # WEB_BROWSER는 개발용. APK 빌드하면 Android에서 정상 앱처럼 동작.
-ft.app(target=main, port=8550, view=ft.AppView.WEB_BROWSER)
+# ft.app(target=main, port=8550, view=ft.AppView.WEB_BROWSER)
+
+if __name__ == "__main__":
+    # 포트나 뷰 설정 없이 기본 실행 (Flet이 실행 환경을 자동 감지함)
+    ft.app(target=main)
